@@ -1,4 +1,4 @@
-import utils from './util.js';
+import numToArr from './util.js';
 
 function hasDuplicate(input) {
   const uniqueNumbers = new Set(input);

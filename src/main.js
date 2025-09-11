@@ -1,5 +1,5 @@
-import checkInput from './checkInput.js';
-import utils from './util.js';
+import isValidInput from './checkInput.js';
+import numToArr from './util.js';
 
 function makeRandomNumber() {
   const numbers = [];
