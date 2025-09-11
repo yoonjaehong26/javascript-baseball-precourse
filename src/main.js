@@ -1,5 +1,6 @@
 import isValidInput from './checkInput.js';
 import numToArr from './util.js';
+import { changeHtml } from './uiChanger.js';
 
 function makeRandomNumber() {
   const numbers = [];
@@ -11,6 +12,8 @@ function makeRandomNumber() {
   }
   return numbers;
 }
+
+document.getElementById("result").style.display = "none";
 
 const computerInputNumbers = makeRandomNumber();
 
@@ -27,6 +30,7 @@ document.getElementById('submit').addEventListener('click', (event) => {
   const userInputNumbers = numToArr(userInput);
 
   const resultString = play(computerInputNumbers, userInputNumbers);
+  changeHtml(resultString);
 })
 
 function play(computerInputNumbers, userInputNumbers) {
