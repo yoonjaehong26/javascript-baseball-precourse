@@ -17,6 +17,7 @@ export default class BaseballGame {
   constructor() {
     this.computerInputNumbers = makeRandomNumber();
     this.initEventListeners();
+    resetUI();
   }
 
   initEventListeners() {
@@ -72,6 +73,7 @@ export default class BaseballGame {
 
   handleRestart() {
     this.computerInputNumbers = makeRandomNumber();
+    resetUI();
   }
 }
 
