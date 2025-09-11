@@ -8,3 +8,8 @@ function makeRandomNumber() {
   }
   return numbers;
 }
+
+let userInputNumbers;
+document.getElementById('submit').addEventListener('click', (event) => {
+  event.preventDefault();
+});
