@@ -12,4 +12,5 @@ function makeRandomNumber() {
 let userInputNumbers;
 document.getElementById('submit').addEventListener('click', (event) => {
   event.preventDefault();
+  userInputNumbers = document.getElementById('user-input').value;
 });
