@@ -1,3 +1,6 @@
+import checkInput from './checkInput.js';
+import utils from './util.js';
+
 function makeRandomNumber() {
   const numbers = [];
   while (numbers.length < 3) {
