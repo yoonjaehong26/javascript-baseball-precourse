@@ -12,10 +12,11 @@ function makeRandomNumber() {
   return numbers;
 }
 
-let userInput;
+const computerInputNumbers = makeRandomNumber();
+
 document.getElementById('submit').addEventListener('click', (event) => {
   event.preventDefault();
-  userInput = document.getElementById('user-input').value;
+  const userInput = document.getElementById('user-input').value;
 
   if (!isValidInput(userInput)) {
     alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요");
@@ -24,4 +25,38 @@ document.getElementById('submit').addEventListener('click', (event) => {
   }
 
   const userInputNumbers = numToArr(userInput);
-});
+
+  const resultString = play(computerInputNumbers, userInputNumbers);
+})
+
+function play(computerInputNumbers, userInputNumbers) {
+  let strike = 0;
+  let ball = 0;
+
+  for (let i = 0; i < computerInputNumbers.length; i++) {
+    if (computerInputNumbers[i] === userInputNumbers[i]) {
+      strike++;
+    } else if (computerInputNumbers.includes(userInputNumbers[i])) {
+      ball++;
+    }
+  }
+  return getPlayResultString(strike, ball);
+};
+
+function getPlayResultString(strike, ball) {
+  if (strike === 0 && ball === 0) {
+    return "낫싱";
+  }
+  let result = "";
+  if (ball > 0) {
+    result += `${ball}볼`;
+  }
+  if (strike > 0) {
+    if (result) {
+      result += " ";
+    }
+    result += `${strike}스트라이크`;
+  }
+
+  return result;
+};
