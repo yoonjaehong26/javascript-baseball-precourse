@@ -5,6 +5,16 @@ function hasDuplicate(input) {
   return uniqueNumbers.size !== input.length;
 }
 
+function isEachNumberInRange(input) {
+  for (const char of input) {
+    const number = parseInt(char, 10);
+    if (isNaN(number) || number < 1 || number > 9) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export default function isValidInput(input) {
   if (input.length !== 3) {
     return false;
@@ -12,5 +22,5 @@ export default function isValidInput(input) {
   if (hasDuplicate(input)) {
     return false;
   }
-  return true;
+  return isEachNumberInRange(input);
 }
