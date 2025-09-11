@@ -1,6 +1,6 @@
 import isValidInput from './checkInput.js';
 import numToArr from './util.js';
-import { changeHtml } from './uiChanger.js';
+import { changeHtml, resetUI } from './uiChanger.js';
 
 function makeRandomNumber() {
   const numbers = [];
@@ -21,6 +21,7 @@ export default class BaseballGame {
 
   initEventListeners() {
     document.getElementById("submit").addEventListener("click", this.handleSubmit.bind(this));
+    document.getElementById("game-restart-button").addEventListener("click", this.handleRestart.bind(this));
   }
 
   play(computerInputNumbers, userInputNumbers) {
@@ -67,6 +68,10 @@ export default class BaseballGame {
     const userInputNumbers = numToArr(userInput);
     const resultString = this.play(this.computerInputNumbers, userInputNumbers);
     changeHtml(resultString);
+  }
+
+  handleRestart() {
+    this.computerInputNumbers = makeRandomNumber();
   }
 }
 
