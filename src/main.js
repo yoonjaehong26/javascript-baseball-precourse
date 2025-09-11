@@ -12,8 +12,16 @@ function makeRandomNumber() {
   return numbers;
 }
 
-let userInputNumbers;
+let userInput;
 document.getElementById('submit').addEventListener('click', (event) => {
   event.preventDefault();
-  userInputNumbers = document.getElementById('user-input').value;
+  userInput = document.getElementById('user-input').value;
+
+  if (!isValidInput(userInput)) {
+    alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요");
+    document.getElementById("user-input").value = "";
+    return;
+  }
+
+  const userInputNumbers = numToArr(userInput);
 });
