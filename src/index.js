@@ -2,22 +2,24 @@ import isValidInput from './checkInput.js';
 import numToArr from './util.js';
 import { changeHtml, resetUI } from './uiChanger.js';
 
-function makeRandomNumber() {
-  const numbers = [];
-  while (numbers.length < 3) {
-    const number = MissionUtils.Random.pickNumberInRange(1, 9);
-    if (!numbers.includes(number)) {
-      numbers.push(number);
-    }
-  }
-  return numbers;
-}
 
 export default class BaseballGame {
-  constructor() {
-    this.computerInputNumbers = makeRandomNumber();
+  constructor(digitCount = 3) {
+    this.digitCount = digitCount;
+    this.computerInputNumbers = this.makeRandomNumber();
     this.initEventListeners();
     resetUI();
+  }
+
+  makeRandomNumber() {
+    const numbers = [];
+    while (numbers.length < this.digitCount) {
+      const number = MissionUtils.Random.pickNumberInRange(1, 9);
+      if (!numbers.includes(number)) {
+        numbers.push(number);
+      }
+    }
+    return numbers;
   }
 
   initEventListeners() {
@@ -60,7 +62,7 @@ export default class BaseballGame {
     e.preventDefault();
     const userInput = document.getElementById("user-input").value;
 
-    if (!isValidInput(userInput)) {
+    if (!isValidInput(userInput, this.digitCount)) {
       alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요");
       document.getElementById("user-input").value = "";
       return;
@@ -72,7 +74,7 @@ export default class BaseballGame {
   }
 
   handleRestart() {
-    this.computerInputNumbers = makeRandomNumber();
+    this.computerInputNumbers = this.makeRandomNumber();
     resetUI();
   }
 }

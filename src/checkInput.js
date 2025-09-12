@@ -15,8 +15,8 @@ function isEachNumberInRange(input) {
   return true;
 }
 
-export default function isValidInput(input) {
-  if (input.length !== 3) {
+export default function isValidInput(input, digitCount) {
+  if (input.length !== digitCount) {
     return false;
   }
   if (hasDuplicate(input)) {
