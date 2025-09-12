@@ -24,7 +24,7 @@ export default class BaseballGame {
 
   uiEventListeners() {
     document.getElementById("submit").addEventListener("click", this.gameLogic.bind(this));
-    document.getElementById("game-restart-button").addEventListener("click", this.handleRestart.bind(this));
+    document.getElementById("game-restart-button").addEventListener("click", this.restartLogic.bind(this));
   }
 
   play(computerInputNumbers, userInputNumbers) {
