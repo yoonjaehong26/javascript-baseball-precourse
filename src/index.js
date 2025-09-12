@@ -1,13 +1,13 @@
 import isValidInput from './checkInput.js';
 import numToArr from './util.js';
-import { changeHtml, resetUI } from './uiChanger.js';
+import { changeUI, resetUI } from './uiChanger.js';
 
 
 export default class BaseballGame {
   constructor(digitCount = 3) {
     this.digitCount = digitCount;
     this.computerInputNumbers = this.makeRandomNumber();
-    this.initEventListeners();
+    this.uiEventListeners();
     resetUI();
   }
 
@@ -22,8 +22,8 @@ export default class BaseballGame {
     return numbers;
   }
 
-  initEventListeners() {
-    document.getElementById("submit").addEventListener("click", this.handleSubmit.bind(this));
+  uiEventListeners() {
+    document.getElementById("submit").addEventListener("click", this.gameLogic.bind(this));
     document.getElementById("game-restart-button").addEventListener("click", this.handleRestart.bind(this));
   }
 
@@ -58,7 +58,7 @@ export default class BaseballGame {
     return result;
   }
 
-  handleSubmit(e) {
+  gameLogic(e) {
     e.preventDefault();
     const userInput = document.getElementById("user-input").value;
 
@@ -70,7 +70,7 @@ export default class BaseballGame {
 
     const userInputNumbers = numToArr(userInput);
     const resultString = this.play(this.computerInputNumbers, userInputNumbers);
-    changeHtml(resultString);
+    changeUI(resultString);
   }
 
   handleRestart() {
