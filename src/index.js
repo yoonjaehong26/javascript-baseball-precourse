@@ -23,8 +23,8 @@ export default class BaseballGame {
   }
 
   uiEventListeners() {
-    document.getElementById("submit").addEventListener("click", this.gameLogic.bind(this));
-    document.getElementById("game-restart-button").addEventListener("click", this.restartLogic.bind(this));
+    document.getElementById("submit").addEventListener("click", this.gameLogic);
+    document.getElementById("game-restart-button").addEventListener("click", this.restartLogic);
   }
 
   play(computerInputNumbers, userInputNumbers) {
@@ -58,7 +58,7 @@ export default class BaseballGame {
     return result;
   }
 
-  gameLogic(e) {
+  gameLogic = (e) => {
     e.preventDefault();
 
     const userInput = document.getElementById("user-input").value;
@@ -74,7 +74,7 @@ export default class BaseballGame {
     changeUI(resultString);
   }
 
-  restartLogic() {
+  restartLogic = () => {
     this.computerInputNumbers = this.makeRandomNumber();
     resetUI();
   }
