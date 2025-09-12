@@ -60,8 +60,8 @@ export default class BaseballGame {
 
   gameLogic(e) {
     e.preventDefault();
-    const userInput = document.getElementById("user-input").value;
 
+    const userInput = document.getElementById("user-input").value;
     if (!isValidInput(userInput, this.digitCount)) {
       alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요");
       document.getElementById("user-input").value = "";
@@ -70,10 +70,11 @@ export default class BaseballGame {
 
     const userInputNumbers = numToArr(userInput);
     const resultString = this.play(this.computerInputNumbers, userInputNumbers);
+
     changeUI(resultString);
   }
 
-  handleRestart() {
+  restartLogic() {
     this.computerInputNumbers = this.makeRandomNumber();
     resetUI();
   }
