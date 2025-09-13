@@ -1,6 +1,6 @@
 import isValidInput from './checkInput.js';
 import numToArr from './util.js';
-import { changeUI, resetUI } from './uiChanger.js';
+import { changeGameResultUI, resetGameResultUI } from './uiChanger.js';
 
 
 export default class BaseballGame {
@@ -8,7 +8,7 @@ export default class BaseballGame {
     this.digitCount = digitCount;
     this.computerInputNumbers = this.makeRandomNumber();
     this.uiEventListeners();
-    resetUI();
+    resetGameResultUI();
   }
 
   makeRandomNumber() {
@@ -75,12 +75,12 @@ export default class BaseballGame {
     const userInputNumbers = numToArr(userInput);
     const resultString = this.play(this.computerInputNumbers, userInputNumbers);
 
-    changeUI(resultString);
+    changeGameResultUI(resultString);
   }
 
   restartLogic = () => {
     this.computerInputNumbers = this.makeRandomNumber();
-    resetUI();
+    resetGameResultUI();
   }
 }
 

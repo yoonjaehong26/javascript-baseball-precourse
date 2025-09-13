@@ -1,10 +1,10 @@
-export function changeUI(resultString) {
+export function changeGameResultUI(resultString) {
   document.getElementById("result").style.display = "block";
   document.getElementById("result").innerHTML = resultString;
   document.getElementById("game-restart-button").style.display = resultString === "3스트라이크" ? "block" : "none";
 }
 
-export function resetUI() {
+export function resetGameResultUI() {
   document.getElementById("user-input").value = "";
   document.getElementById("result").innerHTML = "";
   document.getElementById("result").style.display = "none";
