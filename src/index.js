@@ -33,9 +33,9 @@ export default class BaseballGame {
 
     for (let i = 0; i < computerInputNumbers.length; i++) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
-        strikeCount++;
+        strikeCount+=1;
       } else if (computerInputNumbers.includes(userInputNumbers[i])) {
-        ballCount++;
+        ballCount+=1;
       }
     }
     return this.getPlayResultString(strikeCount, ballCount);
