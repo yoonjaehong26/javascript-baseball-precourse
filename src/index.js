@@ -28,34 +28,34 @@ export default class BaseballGame {
   }
 
   play(computerInputNumbers, userInputNumbers) {
-    let strike = 0;
-    let ball = 0;
+    let strikeCount = 0;
+    let ballCount = 0;
 
     for (let i = 0; i < computerInputNumbers.length; i++) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
-        strike++;
+        strikeCount++;
       } else if (computerInputNumbers.includes(userInputNumbers[i])) {
-        ball++;
+        ballCount++;
       }
     }
-    return this.getPlayResultString(strike, ball);
+    return this.getPlayResultString(strikeCount, ballCount);
   }
 
-  getPlayResultString(strike, ball) {
-    if (strike === 0 && ball === 0) {
+  getPlayResultString(strikeCount, ballCount) {
+    if (strikeCount === 0 && ballCount === 0) {
       return "낫싱";
     }
-    let result = "";
-    if (ball > 0) {
-      result += `${ball}볼`;
+    let resultString = "";
+    if (ballCount > 0) {
+      resultString += `${ballCount}볼`;
     }
-    if (strike > 0) {
-      if (result) {
-        result += " ";
+    if (strikeCount > 0) {
+      if (resultString) {
+        resultString += " ";
       }
-      result += `${strike}스트라이크`;
+      resultString += `${strikeCount}스트라이크`;
     }
-    return result;
+    return resultString;
   }
 
   gameLogic = (e) => {
