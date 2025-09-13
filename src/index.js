@@ -55,7 +55,11 @@ export default class BaseballGame {
       }
       resultString += `${strikeCount}스트라이크`;
     }
-    return resultString;
+
+    if (strikeCount === 3){
+      resultString = "🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?";
+    }
+      return resultString;
   }
 
   gameLogic = (e) => {
