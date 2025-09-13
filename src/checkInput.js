@@ -20,5 +20,8 @@ export default function isValidInput(input, digitCount) {
   if (hasDuplicate(input)) {
     return false;
   }
+  if (!input.test(/^ [1-9]+ $/)) {
+    return false;
+  }
   return isEachNumberInRange(input);
 }
