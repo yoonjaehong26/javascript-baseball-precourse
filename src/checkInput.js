@@ -1,5 +1,3 @@
-import numToArr from './util.js';
-
 function hasDuplicate(input) {
   const uniqueNumbers = new Set(input);
   return uniqueNumbers.size !== input.length;
