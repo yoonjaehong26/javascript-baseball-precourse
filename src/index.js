@@ -2,7 +2,6 @@ import isValidInput from './checkInput.js';
 import numToArr from './util.js';
 import { changeGameResultUI, resetGameResultUI } from './uiChanger.js';
 
-
 export default class BaseballGame {
   constructor(digitCount = 3) {
     this.digitCount = digitCount;
@@ -23,8 +22,8 @@ export default class BaseballGame {
   }
 
   uiEventListeners() {
-    document.getElementById("submit").addEventListener("click", this.gameLogic);
-    document.getElementById("game-restart-button").addEventListener("click", this.restartLogic);
+    document.getElementById('submit').addEventListener('click', this.gameLogic);
+    document.getElementById('game-restart-button').addEventListener('click', this.restartLogic);
   }
 
   play(computerInputNumbers, userInputNumbers) {
@@ -43,32 +42,32 @@ export default class BaseballGame {
 
   getPlayResultString(strikeCount, ballCount) {
     if (strikeCount === 0 && ballCount === 0) {
-      return "낫싱";
+      return '낫싱';
     }
-    let resultString = "";
+    let resultString = '';
     if (ballCount > 0) {
       resultString += `${ballCount}볼`;
     }
     if (strikeCount > 0) {
       if (resultString) {
-        resultString += " ";
+        resultString += ' ';
       }
       resultString += `${strikeCount}스트라이크`;
     }
 
-    if (strikeCount === 3){
-      resultString = "🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?";
+    if (strikeCount === 3) {
+      resultString = '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?';
     }
-      return resultString;
+    return resultString;
   }
 
   gameLogic = (e) => {
     e.preventDefault();
 
-    const userInput = document.getElementById("user-input").value;
+    const userInput = document.getElementById('user-input').value;
     if (!isValidInput(userInput, this.digitCount)) {
-      alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요");
-      document.getElementById("user-input").value = "";
+      alert('잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요');
+      document.getElementById('user-input').value = '';
       return;
     }
 
@@ -76,12 +75,12 @@ export default class BaseballGame {
     const resultString = this.play(this.computerInputNumbers, userInputNumbers);
 
     changeGameResultUI(resultString);
-  }
+  };
 
   restartLogic = () => {
     this.computerInputNumbers = this.makeRandomNumber();
     resetGameResultUI();
-  }
+  };
 }
 
 new BaseballGame();
