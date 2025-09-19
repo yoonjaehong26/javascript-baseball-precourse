@@ -8,9 +8,13 @@ export default class BaseballGame {
   constructor(digitCount = 3) {
     this.digitCount = digitCount;
     this.BaseballGameModel = new BaseballGameModel(this.digitCount);
+    this.computerInputNumbers = null;
+  }
 
-    this.computerInputNumbers = this.BaseballGameModel.makeRandomNumber();
-    this.uiEventListeners();
+  static start() {
+    const game = new BaseballGame();
+    game.computerInputNumbers = game.BaseballGameModel.makeRandomNumber();
+    game.uiEventListeners();
     BaseballGameView.resetGameResultUI();
   }
 
@@ -40,4 +44,4 @@ export default class BaseballGame {
   };
 }
 
-const game = new BaseballGame();
+BaseballGame.start();
