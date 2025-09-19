@@ -1,8 +1,14 @@
 export default class BaseballGameView {
-  static changeGameResultUI(resultString) {
+  static changeIncompleteGameResultUI(resultString) {
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').innerHTML = resultString;
-    document.getElementById('game-restart-button').style.display = resultString === '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?' ? 'block' : 'none';
+    document.getElementById('game-restart-button').style.display = 'none';
+  }
+
+  static changeCompleteGameResultUI(resultString) {
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').innerHTML = resultString;
+    document.getElementById('game-restart-button').style.display = 'block';
   }
 
   static resetGameResultUI() {

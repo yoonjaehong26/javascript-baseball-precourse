@@ -35,7 +35,11 @@ export default class BaseballGame {
     const userInputNumbers = numToArr(userInput);
     const resultString = this.BaseballGameModel.play(this.computerInputNumbers, userInputNumbers);
 
-    BaseballGameView.changeGameResultUI(resultString);
+    if (resultString === '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?') {
+      BaseballGameView.changeCompleteGameResultUI(resultString);
+    } else {
+      BaseballGameView.changeIncompleteGameResultUI(resultString);
+    }
   };
 
   restartLogic = () => {
