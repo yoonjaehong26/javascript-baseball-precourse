@@ -18,7 +18,7 @@ export default class BaseballGameModel {
     let strikeCount = 0;
     let ballCount = 0;
 
-    for (let i = 0; i < computerInputNumbers.length; i++) {
+    for (let i = 0; i < computerInputNumbers.length; i += 1) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
         strikeCount += 1;
       } else if (computerInputNumbers.includes(userInputNumbers[i])) {
@@ -43,7 +43,7 @@ export default class BaseballGameModel {
       resultString += `${strikeCount}스트라이크`;
     }
 
-    if (strikeCount === 3) {
+    if (strikeCount === this.digitCount) {
       resultString = '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?';
     }
     return resultString;
