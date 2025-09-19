@@ -8,11 +8,10 @@ export default class BaseballGame {
   constructor(digitCount = 3) {
     this.digitCount = digitCount;
     this.BaseballGameModel = new BaseballGameModel(this.digitCount);
-    this.BaseballGameView = new BaseballGameView();
 
     this.computerInputNumbers = this.BaseballGameModel.makeRandomNumber();
     this.uiEventListeners();
-    this.BaseballGameView.resetGameResultUI();
+    BaseballGameView.resetGameResultUI();
   }
 
   uiEventListeners() {
@@ -25,19 +24,19 @@ export default class BaseballGame {
 
     const userInput = document.getElementById('user-input').value;
     if (!isValidInput(userInput, this.digitCount)) {
-      this.BaseballGameView.alertWrongUserInput();
+      BaseballGameView.alertWrongUserInput();
       return;
     }
 
     const userInputNumbers = numToArr(userInput);
     const resultString = this.BaseballGameModel.play(this.computerInputNumbers, userInputNumbers);
 
-    this.BaseballGameView.changeGameResultUI(resultString);
+    BaseballGameView.changeGameResultUI(resultString);
   };
 
   restartLogic = () => {
     this.computerInputNumbers = this.BaseballGameModel.makeRandomNumber();
-    this.BaseballGameView.resetGameResultUI();
+    BaseballGameView.resetGameResultUI();
   };
 }
 
