@@ -8,8 +8,17 @@
     "browser": true,
     "es2021": true
   },
+  "globals": {
+    "MissionUtils": "readonly"
+  },
   "rules": {
-    // 여기에 필요한 규칙을 추가/수정할 수 있습니다.
-    // 예: "no-console": "off"
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always"
+      }
+    ],
+    "no-alert": "off"
   }
 }
