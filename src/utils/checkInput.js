@@ -4,13 +4,10 @@ function hasDuplicate(input) {
 }
 
 function isEachNumberInRange(input) {
-  for (const char of input) {
+  return input.split('').every((char) => {
     const number = parseInt(char, 10);
-    if (isNaN(number) || number < 1 || number > 9) {
-      return false;
-    }
-  }
-  return true;
+    return !Number.isNaN(number) && number >= 1 && number <= 9;
+  });
 }
 
 export default function isValidInput(input, digitCount) {
