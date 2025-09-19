@@ -20,12 +20,12 @@ export default class BaseballGame {
     document.getElementById('game-restart-button').addEventListener('click', this.restartLogic);
   }
 
-  gameLogic = e => {
+  gameLogic = (e) => {
     e.preventDefault();
 
     const userInput = document.getElementById('user-input').value;
     if (!isValidInput(userInput, this.digitCount)) {
-      this.BaseballGameView.alertWrongUserInput()
+      this.BaseballGameView.alertWrongUserInput();
       return;
     }
 
