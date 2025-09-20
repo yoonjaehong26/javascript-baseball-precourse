@@ -5,7 +5,9 @@ import isValidInput from '../utils/checkInput.js';
 import numToArr from '../utils/additionalUtilFunction.js';
 
 export default class BaseballGame {
-  constructor(digitCount = 3) {
+  static DEFAULT_DIGIT_COUNT = 3;
+
+  constructor(digitCount = BaseballGame.DEFAULT_DIGIT_COUNT) {
     this.digitCount = digitCount;
     this.BaseballGameModel = new BaseballGameModel(this.digitCount);
     this.computerInputNumbers = null;
