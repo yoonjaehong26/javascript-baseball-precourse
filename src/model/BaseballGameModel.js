@@ -3,7 +3,7 @@ export default class BaseballGameModel {
     this.digitCount = digitCount;
   }
 
-  makeRandomNumber() {
+  makeRandomNumbers() {
     const numbers = [];
     while (numbers.length < this.digitCount) {
       const number = MissionUtils.Random.pickNumberInRange(1, 9);

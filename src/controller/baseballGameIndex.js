@@ -15,17 +15,17 @@ export default class BaseballGame {
 
   static start() {
     const game = new BaseballGame();
-    game.computerInputNumbers = game.BaseballGameModel.makeRandomNumber();
-    game.uiEventListeners();
+    game.computerInputNumbers = game.BaseballGameModel.makeRandomNumbers();
+    game.listenUIEvent();
     BaseballGameView.resetGameResultUI();
   }
 
-  uiEventListeners() {
-    document.getElementById('submit').addEventListener('click', this.gameLogic);
-    document.getElementById('game-restart-button').addEventListener('click', this.restartLogic);
+  listenUIEvent() {
+    document.getElementById('submit').addEventListener('click', this.handleGuessSubmit);
+    document.getElementById('game-restart-button').addEventListener('click', this.restartGame);
   }
 
-  gameLogic = (e) => {
+  handleGuessSubmit = (e) => {
     e.preventDefault();
 
     const userInput = document.getElementById('user-input').value;
@@ -44,8 +44,8 @@ export default class BaseballGame {
     }
   };
 
-  restartLogic = () => {
-    this.computerInputNumbers = this.BaseballGameModel.makeRandomNumber();
+  restartGame = () => {
+    this.computerInputNumbers = this.BaseballGameModel.makeRandomNumbers();
     BaseballGameView.resetGameResultUI();
   };
 }
