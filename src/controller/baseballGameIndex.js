@@ -10,6 +10,7 @@ export default class BaseballGame {
     this.digitCount = digitCount;
     this.BaseballGameModel = new BaseballGameModel(this.digitCount);
     this.computerInputNumbers = null;
+    this.isCompleteGame = false;
   }
 
   static start() {
@@ -27,6 +28,10 @@ export default class BaseballGame {
   handleGuessSubmit = (e) => {
     e.preventDefault();
 
+    if (this.isCompleteGame) {
+      return;
+    }
+
     const userInput = document.getElementById('user-input').value;
     if (!this.BaseballGameModel.isValidInput(userInput, this.digitCount)) {
       BaseballGameView.alertWrongUserInput(this.digitCount);
@@ -40,6 +45,7 @@ export default class BaseballGame {
       .calculatePlayResult(this.computerInputNumbers, userInputNumbers);
 
     if (isCompleteGame) {
+      this.isCompleteGame = true;
       BaseballGameView.changeCompleteGameResultUI();
     } else {
       BaseballGameView.changeIncompleteGameResultUI(resultString);
@@ -49,6 +55,7 @@ export default class BaseballGame {
   restartGame = () => {
     this.computerInputNumbers = this.BaseballGameModel.makeRandomNumbers();
     BaseballGameView.resetGameResultUI();
+    this.isCompleteGame = false;
   };
 }
 
