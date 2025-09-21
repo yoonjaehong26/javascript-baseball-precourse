@@ -1,7 +1,11 @@
+import isValidInput from './checkInput.js';
+
 export default class BaseballGameModel {
   constructor(digitCount) {
     this.digitCount = digitCount;
   }
+
+  isValidInput = isValidInput;
 
   makeRandomNumbers() {
     const numbers = [];

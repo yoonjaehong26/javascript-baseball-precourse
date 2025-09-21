@@ -1,7 +1,6 @@
 import BaseballGameModel from '../model/BaseballGameModel.js';
 import BaseballGameView from '../view/BaseballGameView.js';
 
-import isValidInput from '../utils/checkInput.js';
 import numToArr from '../utils/additionalUtilFunction.js';
 
 export default class BaseballGame {
@@ -29,7 +28,7 @@ export default class BaseballGame {
     e.preventDefault();
 
     const userInput = document.getElementById('user-input').value;
-    if (!isValidInput(userInput, this.digitCount)) {
+    if (!this.BaseballGameModel.isValidInput(userInput, this.digitCount)) {
       BaseballGameView.alertWrongUserInput();
       return;
     }
