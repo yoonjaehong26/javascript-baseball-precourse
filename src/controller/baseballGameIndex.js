@@ -38,7 +38,10 @@ export default class BaseballGame {
     const userInputNumbers = numToArr(userInput);
     const resultString = BaseballGameModel.play(this.computerInputNumbers, userInputNumbers);
 
-    if (resultString === `${this.digitCount}스트라이크`) {
+    const { isCompleteGame } = BaseballGameModel
+      .calculatePlayResult(this.computerInputNumbers, userInputNumbers);
+
+    if (isCompleteGame) {
       BaseballGameView.changeCompleteGameResultUI(BaseballGame.GAME_RESULT_STRING);
     } else {
       BaseballGameView.changeIncompleteGameResultUI(resultString);

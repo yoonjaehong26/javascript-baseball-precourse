@@ -19,8 +19,16 @@ export default class BaseballGameModel {
   }
 
   static play(computerInputNumbers, userInputNumbers) {
+    const { strikeCount, ballCount } = BaseballGameModel
+      .calculatePlayResult(computerInputNumbers, userInputNumbers);
+
+    return BaseballGameModel.getPlayResultString(strikeCount, ballCount);
+  }
+
+  static calculatePlayResult(computerInputNumbers, userInputNumbers) {
     let strikeCount = 0;
     let ballCount = 0;
+    let isCompleteGame = false;
 
     for (let i = 0; i < computerInputNumbers.length; i += 1) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
@@ -29,7 +37,10 @@ export default class BaseballGameModel {
         ballCount += 1;
       }
     }
-    return BaseballGameModel.getPlayResultString(strikeCount, ballCount);
+    if (strikeCount === computerInputNumbers.length) {
+      isCompleteGame = true;
+    }
+    return { strikeCount, ballCount, isCompleteGame };
   }
 
   static getPlayResultString(strikeCount, ballCount) {
