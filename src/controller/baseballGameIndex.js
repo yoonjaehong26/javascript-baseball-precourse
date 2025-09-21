@@ -6,8 +6,6 @@ import numToArr from '../utils/additionalUtilFunction.js';
 export default class BaseballGame {
   static DEFAULT_DIGIT_COUNT = 3;
 
-  static GAME_RESULT_STRING = '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?';
-
   constructor(digitCount = BaseballGame.DEFAULT_DIGIT_COUNT) {
     this.digitCount = digitCount;
     this.BaseballGameModel = new BaseballGameModel(this.digitCount);
@@ -31,7 +29,7 @@ export default class BaseballGame {
 
     const userInput = document.getElementById('user-input').value;
     if (!this.BaseballGameModel.isValidInput(userInput, this.digitCount)) {
-      BaseballGameView.alertWrongUserInput();
+      BaseballGameView.alertWrongUserInput(this.digitCount);
       return;
     }
 
@@ -42,7 +40,7 @@ export default class BaseballGame {
       .calculatePlayResult(this.computerInputNumbers, userInputNumbers);
 
     if (isCompleteGame) {
-      BaseballGameView.changeCompleteGameResultUI(BaseballGame.GAME_RESULT_STRING);
+      BaseballGameView.changeCompleteGameResultUI();
     } else {
       BaseballGameView.changeIncompleteGameResultUI(resultString);
     }
