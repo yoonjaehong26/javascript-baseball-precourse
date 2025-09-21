@@ -1,4 +1,6 @@
 export default class BaseballGameView {
+  static GAME_RESULT_STRING = '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?';
+
   static changeIncompleteGameResultUI(resultString) {
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').innerHTML = resultString;

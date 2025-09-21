@@ -18,7 +18,7 @@ export default class BaseballGameModel {
     return numbers;
   }
 
-  play(computerInputNumbers, userInputNumbers) {
+  static play(computerInputNumbers, userInputNumbers) {
     let strikeCount = 0;
     let ballCount = 0;
 
@@ -29,10 +29,10 @@ export default class BaseballGameModel {
         ballCount += 1;
       }
     }
-    return this.getPlayResultString(strikeCount, ballCount);
+    return BaseballGameModel.getPlayResultString(strikeCount, ballCount);
   }
 
-  getPlayResultString(strikeCount, ballCount) {
+  static getPlayResultString(strikeCount, ballCount) {
     if (strikeCount === 0 && ballCount === 0) {
       return '낫싱';
     }
@@ -45,10 +45,6 @@ export default class BaseballGameModel {
         resultString += ' ';
       }
       resultString += `${strikeCount}스트라이크`;
-    }
-
-    if (strikeCount === this.digitCount) {
-      resultString = '🎉축하합니다!!!🎉 정답을 맞추셨습니다. <br> 재시작 하시겠습니까?';
     }
     return resultString;
   }
