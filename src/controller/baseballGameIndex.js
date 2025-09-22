@@ -4,57 +4,64 @@ import BaseballGameView from '../view/BaseballGameView.js';
 import numToArr from '../utils/additionalUtilFunction.js';
 
 export default class BaseballGame {
-  static DEFAULT_DIGIT_COUNT = 3;
+  static #DEFAULT_DIGIT_COUNT = 3;
 
-  constructor(digitCount = BaseballGame.DEFAULT_DIGIT_COUNT) {
-    this.digitCount = digitCount;
+  #digitCount;
 
-    this.BaseballGameModel = new BaseballGameModel(this.digitCount);
+  #isCompleteGame;
 
-    this.isCompleteGame = false;
-    this.computerInputNumbers = this.BaseballGameModel.makeRandomNumbers();
-    this.listenUIEvent();
+  #computerInputNumbers;
+
+  #BaseballGameModel;
+
+  constructor(digitCount = BaseballGame.#DEFAULT_DIGIT_COUNT) {
+    this.#digitCount = digitCount;
+
+    this.#BaseballGameModel = new BaseballGameModel(this.#digitCount);
+
+    this.#isCompleteGame = false;
+    this.#computerInputNumbers = this.#BaseballGameModel.makeRandomNumbers();
+    this.#listenUIEvent();
     BaseballGameView.resetGameResultUI();
   }
 
-  listenUIEvent() {
-    document.getElementById('submit').addEventListener('click', this.handleGuessSubmit);
-    document.getElementById('game-restart-button').addEventListener('click', this.restartGame);
+  #listenUIEvent() {
+    document.getElementById('submit').addEventListener('click', this.#handleGuessSubmit);
+    document.getElementById('game-restart-button').addEventListener('click', this.#restartGame);
   }
 
-  handleGuessSubmit = (e) => {
+  #handleGuessSubmit = (e) => {
     e.preventDefault();
 
-    if (this.isCompleteGame) {
+    if (this.#isCompleteGame) {
       return;
     }
 
     const userInput = document.getElementById('user-input').value;
-    if (!this.BaseballGameModel.isValidInput(userInput, this.digitCount)) {
-      BaseballGameView.alertWrongUserInput(this.digitCount);
+    if (!this.#BaseballGameModel.isValidInput(userInput, this.#digitCount)) {
+      BaseballGameView.alertWrongUserInput(this.#digitCount);
       return;
     }
 
     const userInputNumbers = numToArr(userInput);
-    const resultString = BaseballGameModel.play(this.computerInputNumbers, userInputNumbers);
+    const resultString = BaseballGameModel.play(this.#computerInputNumbers, userInputNumbers);
 
     const { isCompleteGame } = BaseballGameModel
-      .calculatePlayResult(this.computerInputNumbers, userInputNumbers);
+      .calculatePlayResult(this.#computerInputNumbers, userInputNumbers);
 
     if (isCompleteGame) {
-      this.isCompleteGame = true;
+      this.#isCompleteGame = true;
       BaseballGameView.changeCompleteGameResultUI();
     } else {
       BaseballGameView.changeIncompleteGameResultUI(resultString);
     }
   };
 
-  restartGame = () => {
-    this.computerInputNumbers = this.BaseballGameModel.makeRandomNumbers();
+  #restartGame = () => {
+    this.#computerInputNumbers = this.#BaseballGameModel.makeRandomNumbers();
     BaseballGameView.resetGameResultUI();
-    this.isCompleteGame = false;
+    this.#isCompleteGame = false;
   };
 }
 
-const game = new BaseballGame(3);
-game();
+const game = new BaseballGame(4);

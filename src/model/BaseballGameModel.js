@@ -22,7 +22,7 @@ export default class BaseballGameModel {
     const { strikeCount, ballCount } = BaseballGameModel
       .calculatePlayResult(computerInputNumbers, userInputNumbers);
 
-    return BaseballGameModel.getPlayResultString(strikeCount, ballCount);
+    return BaseballGameModel.#getPlayResultString(strikeCount, ballCount);
   }
 
   static calculatePlayResult(computerInputNumbers, userInputNumbers) {
@@ -43,7 +43,7 @@ export default class BaseballGameModel {
     return { strikeCount, ballCount, isCompleteGame };
   }
 
-  static getPlayResultString(strikeCount, ballCount) {
+  static #getPlayResultString(strikeCount, ballCount) {
     if (strikeCount === 0 && ballCount === 0) {
       return '낫싱';
     }
