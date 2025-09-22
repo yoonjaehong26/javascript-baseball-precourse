@@ -64,4 +64,4 @@ export default class BaseballGame {
   };
 }
 
-const game = new BaseballGame(4);
+const game = new BaseballGame();
